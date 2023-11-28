@@ -2,17 +2,12 @@ import { perks } from "@/lib/constants/perks";
 import React from "react";
 import { Typography } from "../typography/Typography";
 
-type FeatureIconsWithTextType = {
+const FeatureIconsWithText: React.FC<{
   FeatureDetails: (typeof perks)[number];
-};
-
-const FeatureIconsWithText: React.FC<FeatureIconsWithTextType> = ({
-  FeatureDetails,
-}) => {
+}> = ({ FeatureDetails }) => {
   return (
     <div
-      className="text-center md:flex md:items-start md:text-left lg:block
-                  lg:text-center "
+      className="text-center md:flex md:items-start md:text-left lg:block lg:text-center"
       key={FeatureDetails.name}
     >
       <div className="md:flex-shrink-0 flex justify-center">
