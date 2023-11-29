@@ -12,10 +12,11 @@ import { Separator } from "./ui/separator";
 import { formatPrice } from "../lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
-import Image from "next/image";
+import EmptyCartSection from "./ui/cart/EmptyCartSection";
+import CartListSections from "./ui/cart/CartListSections";
 
 const Cart = () => {
-  const itemCount = 0;
+  const itemCount = 10;
   const fee = 1;
   return (
     <Sheet>
@@ -29,55 +30,18 @@ const Cart = () => {
         <SheetHeader className="space-y-2.5 pr-6">
           <SheetTitle>Cart (0)</SheetTitle>
           {itemCount > 0 ? (
-            <>
-              <div className="flex w-full flex-col pr-6">Cart items</div>
-              <div className="space-y-4 pr-6">
-                <Separator />
-                <div className="space-y-1.5 text-sm">
-                  <div className="flex">
-                    <span className="flex-1 ">Shipping</span>
-                    <span>Free</span>
-                  </div>
-                  <div className="flex">
-                    <span className="flex-1 ">Transaction Fee</span>
-                    <span>{formatPrice(fee, { currency: "INR" })}</span>
-                  </div>
-                </div>
-                <SheetFooter>
-                  <SheetTrigger asChild>
-                    <Link
-                      href={"/cart"}
-                      className={buttonVariants({ className: "w-full" })}
-                    >
-                      Go To Cart
-                    </Link>
-                  </SheetTrigger>
-                </SheetFooter>
-              </div>
-            </>
+            <CartListSections
+              transactionFee={10}
+              currency="INR"
+              cartLink="/cart"
+            />
           ) : (
-            <div className="flex h-full flex-col items-center justify-center space-y-1 align-middle">
-              <div className="relative mb-4 h-60 w-60 text-muted-foreground">
-                <Image
-                  src="/hippo-empty-cart.png"
-                  fill
-                  alt="empty shopping page"
-                />
-              </div>
-              <div className="text-xl font-semibold">Your cart is empty</div>
-              <SheetTrigger asChild>
-                <Link
-                  href={"/products"}
-                  className={buttonVariants({
-                    variant: "link",
-                    size: "sm",
-                    className: "text-sm text-muted-foreground",
-                  })}
-                >
-                  Add items to your cart to checkout.
-                </Link>
-              </SheetTrigger>
-            </div>
+            <EmptyCartSection
+              imgAlt="empty shopping page"
+              imgUrl="/hippo-empty-cart.png"
+              linkHref="/products"
+              linkText="Add items to your cart to checkout."
+            />
           )}
         </SheetHeader>
       </SheetContent>

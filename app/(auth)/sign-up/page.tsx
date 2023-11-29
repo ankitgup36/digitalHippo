@@ -10,6 +10,8 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SignupValidator as AuthCredentialsValidator } from "../../../lib/validator";
 
 type Inputs = {
   email: string;
@@ -20,9 +22,10 @@ const Page = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    resolver: zodResolver(AuthCredentialsValidator),
+  });
 
   const onSubmit = () => {
     console.log("submitted successfully");
