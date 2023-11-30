@@ -1,4 +1,5 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import ProductReel from "@/components/ProductReel";
 import FeatureIconsWithTextList from "@/components/ui/FeatureCardWithLogo/FeatureIconsWithTextList";
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/ui/typography/Typography";
@@ -35,6 +36,7 @@ export default function Home() {
             <Button variant={"ghost"}>Our Quality promise &rarr;</Button>
           </div>
         </div>
+        <ProductReel />
       </MaxWidthWrapper>
       <FeatureIconsWithTextList featuresList={perks} />
     </>
